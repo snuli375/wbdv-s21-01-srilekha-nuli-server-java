@@ -3,8 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"/>
 </head>
 <body>
+<!-- this is the course list view -->
+<!-- used https://getbootstrap.com/docs/5.0/components/navbar/ code as a reference for the nav!-->
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar-brand">Vecna</a>
+        <i class="fa fa-bars" id="navbar-toggler"></i>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="mb-3">
+        Course Manager
+    </h1>
+    <h2 id="new-course-header">New course</h2>
+    <form>
+        <div class="row mb-3">
+            <div class="col-9 col-sm-6">
+                <input class="form-control" id="new-course-input"
+                       placeholder="New course name" aria-label="New course name"/>
+            </div>
+            <div class="col-3 col-sm-6">
+                <button class="btn btn-primary">
+                    <i class="fa fa-plus"></i>
+                    <span class="d-none d-sm-inline-block">Create new course</span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <h2>My courses</h2>
+            <table class="table table-light table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="d-none d-md-table-cell">Owner</th>
+                    <th scope="col" class="d-none d-md-table-cell">Last modified</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="../course-editor/course-editor.template.client.html">
+                            <i class="fa fa-folder"></i>
+                            Uhhhh quick think of a course name!
+                        </a>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        Me
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        27 May 2003
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <a href="../course-editor/course-editor.template.client.html"
+                               class="btn btn-primary btn-sm d-none d-sm-inline-block">
+                                <i class="fa fa-edit"></i>
+                                <span class="d-none d-md-inline-block">Edit</span>
+                            </a>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                                <span class="d-none d-md-inline-block">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="../course-editor/course-editor.template.client.html">
+                            <i class="fa fa-folder"></i>
+                            WAIT NO don't write that down.
+                        </a>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        Me
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        12 Sep 2006
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <a href="../course-editor/course-editor.template.client.html"
+                               class="btn btn-primary btn-sm d-none d-sm-inline-block">
+                                <i class="fa fa-edit"></i>
+                                <span class="d-none d-md-inline-block">Edit</span>
+                            </a>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                                <span class="d-none d-md-inline-block">Delete</span>
+                            </button>
+                        </div>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="../course-editor/course-editor.template.client.html">
+                            <i class="fa fa-folder"></i>
+                            How do you reset this thing?
+                        </a>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        Me
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        21 Dec 2012
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <a href="../course-editor/course-editor.template.client.html"
+                               class="btn btn-primary btn-sm d-none d-sm-inline-block">
+                                <i class="fa fa-edit"></i>
+                                <span class="d-none d-md-inline-block">Edit</span>
+                            </a>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                                <span class="d-none d-md-inline-block">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="../course-editor/course-editor.template.client.html">
+                            <i class="fa fa-folder"></i>
+                            Stupid newfangled technology.
+                        </a>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        Me
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        23 Apr 2018
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <a href="../course-editor/course-editor.template.client.html"
+                               class="btn btn-primary btn-sm d-none d-sm-inline-block">
+                                <i class="fa fa-edit"></i>
+                                <span class="d-none d-md-inline-block">Edit</span>
+                            </a>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                                <span class="d-none d-md-inline-block">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="../course-editor/course-editor.template.client.html">
+                            <i class="fa fa-folder"></i>
+                            ALL HAIL THE GLOW CLOUD!
+                        </a>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        Me
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        9 Jun 2019
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <a href="../course-editor/course-editor.template.client.html"
+                               class="btn btn-primary btn-sm d-none d-sm-inline-block">
+                                <i class="fa fa-edit"></i>
+                                <span class="d-none d-md-inline-block">Edit</span>
+                            </a>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                                <span class="d-none d-md-inline-block">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
