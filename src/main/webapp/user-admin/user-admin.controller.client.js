@@ -7,8 +7,8 @@
 (function () {
     var $usernameFld, $passwordFld;
     var $firstNameFld, $lastNameFld, $roleFld;
-    var $removeBtn, $editBtn, $createBtn, $updateBtn;
-    var $userRowTemplate, $tbody;
+    var $searchBtn, $createBtn, $updateBtn;
+    var $tbody, $selectedUser;
     var userService = new AdminUserServiceClient();
     $(main);
 
@@ -30,15 +30,11 @@
             $tbody = $("#wd-users-table-body")
 
             $createBtn = $(".wd-create")
-            $editBtn = $(".wd-edit")
-            $removeBtn = $(".wd-delete")
             $updateBtn = $(".wd-update")
 
             // add event listeners
             $createBtn.click(createUser)
-            $editBtn.click(selectUser)
             $updateBtn.click(updateUser)
-            $removeBtn.click(deleteUser)
 
             // render users
             userService.findAllUsers().then(users => {
@@ -61,8 +57,8 @@
             role: $roleFld.val()
         }
         console.log(newUser)
-        const users = userService.createUser(newUser)
-        renderUsers(userService.findAllUsers())
+        userService.createUser(newUser)
+        userService.findAllUsers().then(users => renderUsers(users))
     }
 
     /**
@@ -71,9 +67,15 @@
      * user list on server response
      */
     function deleteUser(e) {
+        const target = $(e.target)
+        const id = target.attr("data-username")
+        userService.deleteUser(id)
+        userService.findAllUsers().then(users => renderUsers(users))
     }
 
-    function selectUser() {
+    function selectUser(e) {
+        const target = $(e.target)
+
     }
 
     /**
@@ -95,6 +97,8 @@
         $tbody.empty()
         console.log(users)
         console.log(users.length)
+
+        // render users
         for (let i = 0; i < users.length; i++) {
             console.log(i)
             const user = users[i]
@@ -108,12 +112,20 @@
                 <td>${user.role}</td>
                 <td>
                     <div class="d-flex">
-                        <button id="${i}" class="btn btn-light wd-delete"><i class="fa fa-close"></i></button>
-                        <button id="${user.username}" class="btn btn-light wd-edit"><i class="fa fa-pencil"></i></button>
+                        <button id="${i}" data-username="${user._id}" class="btn btn-light wd-delete">
+                            <i class="fa fa-close"></i>
+                        </button>
+                        <button id="${user._id}" class="btn btn-light wd-edit">
+                            <i class="fa fa-pencil"></i>
+                        </button>
                     </div>
                 </td>
             </tr>`)
         }
+
+        // add event listeners
+        $('.wd-edit').click(selectUser)
+        $('.wd-delete').click(deleteUser)
     }
 
     // function findAllUsers() {

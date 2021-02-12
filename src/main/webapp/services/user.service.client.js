@@ -41,12 +41,8 @@ function AdminUserServiceClient() {
      * @param user
      */
     function updateUser(userId, user) {
-        return $.ajax({
-                          url: `${this.url}/${userId}`,
-                          type: 'PUT',
-                          data: user,
-                          success: res => res
-                      })
+        return $.ajax(`${self.url}/${userId}`, { type : 'UPDATE'}).then(res => res.json())
+
     }
 
     /**
@@ -54,11 +50,6 @@ function AdminUserServiceClient() {
      * @param userId
      */
     function deleteUser(userId) {
-        return $.ajax({
-                          url: `${this.url}/${userId}`,
-                          type: 'DELETE',
-                          data: JSON.stringify(user),
-                          success: res => res
-                      })
+        return $.ajax(`${self.url}/${userId}`, { type : 'DELETE'}).then(res => res.json())
     }
 }
