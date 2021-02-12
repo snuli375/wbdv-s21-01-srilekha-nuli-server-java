@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <h1>User Admin</h1>
-    <table class="table table-light">
+    <table class="table table-light" >
         <thead>
         <tr>
             <th>Username</th>
@@ -26,41 +26,41 @@
             <th>Role</th>
             <th>&nbsp</th>
         </tr>
-        </thead>
-        <tbody>
         <tr>
-            <td>
+            <th>
                 <input class="form-control" id="wd-username-input"
                        placeholder="Username" aria-label="Username" />
-            </td>
-            <td>
-                <input class="form-control" id="wd-password-input"
+            </th>
+            <th>
+                <input class="form-control" type="password" id="wd-password-input"
                        placeholder="Password" aria-label="Password" />
-            </td>
-            <td>
+            </th>
+            <th>
                 <input class="form-control" id="wd-first-name-input"
                        placeholder="First name" aria-label="First name" />
-            </td>
-            <td>
+            </th>
+            <th>
                 <input class="form-control" id="wd-last-name-input"
                        placeholder="Last name" aria-label="Last name" />
-            </td>
-            <td>
+            </th>
+            <th>
                 <select class="form-control" id="wd-role-input"
                         placeholder="Faculty" aria-label="Role">
                     <option>Faculty</option>
                     <option>Student</option>
                     <option>Staff</option>
                 </select>
-            </td>
-            <td>
+            </th>
+            <th>
                 <div class="d-flex">
-                    <button class="btn btn-light"><i class="fa fa-search"></i></button>
-                    <button class="btn btn-light"><i class="fa fa-plus wd-create"></i></button>
-                    <button class="btn btn-light"><i class="fa fa-pencil wd-update"></i></button>
+                    <button class="btn btn-light py-0"><i class="fa fa-2x fa-search wd-search"></i></button>
+                    <button class="btn btn-light py-0"><i class="fa fa-2x fa-plus wd-create"></i></button>
+                    <button class="btn btn-light py-0"><i class="fa fa-2x fa-check wd-update"></i></button>
                 </div>
-            </td>
+            </th>
         </tr>
+        </thead>
+        <tbody id="wd-users-table-body">
         </tbody>
     </table>
 </div>
