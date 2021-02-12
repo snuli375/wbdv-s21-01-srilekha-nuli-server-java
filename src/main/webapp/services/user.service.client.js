@@ -12,17 +12,14 @@ function AdminUserServiceClient() {
      * @param user
      */
     function createUser(user) {
-        return $.post(this.url,
-                      user,
-                      res => res,
-                      'json')
+        return $.post(this.url, user, 'json')
     }
 
     /**
      * retrieves all users as an array of JSON objects
      */
     function findAllUsers() {
-        return $.getJSON(this.url, res => res)
+        return $.getJSON(this.url)
     }
 
     /**
@@ -30,7 +27,7 @@ function AdminUserServiceClient() {
      * @param userId
      */
     function findUserById(userId) {
-        return $.get(`${this.url}/${userId}`, res => res)
+        return $.getJSON(`${this.url}/${userId}`)
     }
 
     /**
@@ -41,7 +38,7 @@ function AdminUserServiceClient() {
      * @param user
      */
     function updateUser(userId, user) {
-        return $.ajax(`${self.url}/${userId}`, { type : 'UPDATE'}).then(res => res.json())
+        return $.ajax(`${self.url}/${userId}`, { type : 'PUT', data: user})
 
     }
 
@@ -50,6 +47,6 @@ function AdminUserServiceClient() {
      * @param userId
      */
     function deleteUser(userId) {
-        return $.ajax(`${self.url}/${userId}`, { type : 'DELETE'}).then(res => res.json())
+        return $.ajax(`${self.url}/${userId}`, { type : 'DELETE'})
     }
 }

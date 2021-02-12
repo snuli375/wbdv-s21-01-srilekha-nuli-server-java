@@ -8,7 +8,8 @@
     var $usernameFld, $passwordFld;
     var $firstNameFld, $lastNameFld, $roleFld;
     var $searchBtn, $createBtn, $updateBtn;
-    var $tbody, $selectedUser;
+    var $tbody;
+    var users, selectedUser;
     var userService = new AdminUserServiceClient();
     $(main);
 
@@ -37,7 +38,8 @@
             $updateBtn.click(updateUser)
 
             // render users
-            userService.findAllUsers().then(users => {
+            userService.findAllUsers().then(serverUsers => {
+                users = serverUsers
                 renderUsers(users)
             })
         })
@@ -56,9 +58,11 @@
             lastName: $lastNameFld.val(),
             role: $roleFld.val()
         }
-        console.log(newUser)
-        userService.createUser(newUser)
-        userService.findAllUsers().then(users => renderUsers(users))
+        userService.createUser(newUser).then(res => {
+            users.push(res)
+            renderUsers(users)
+        })
+
     }
 
     /**
@@ -67,15 +71,24 @@
      * user list on server response
      */
     function deleteUser(e) {
-        const target = $(e.target)
-        const id = target.attr("data-username")
-        userService.deleteUser(id)
-        userService.findAllUsers().then(users => renderUsers(users))
+        const target = $(e.target.closest("*[data-id]"))
+        const id = target.attr("data-id")
+        const index = target.attr("id")
+        userService.deleteUser(id).then(status => {
+            users.splice(index, 1)
+            renderUsers(users)
+        })
     }
 
     function selectUser(e) {
-        const target = $(e.target)
-
+        const target = $(e.target.closest("*[id]"))
+        const id = target.attr("id")
+        selectedUser = users.find(u => u._id === id)
+        $usernameFld.val(selectedUser.username)
+        $passwordFld.val(selectedUser.password)
+        $firstNameFld.val(selectedUser.firstName)
+        $lastNameFld.val(selectedUser.lastName)
+        $roleFld.val(selectedUser.role)
     }
 
     /**
@@ -85,6 +98,22 @@
      * response
      */
     function updateUser() {
+        if (selectedUser) {
+            const updatedUser = {
+                username: $usernameFld.val(),
+                password: $passwordFld.val(),
+                firstName: $firstNameFld.val(),
+                lastName: $lastNameFld.val(),
+                role: $roleFld.val()
+            }
+            userService.updateUser(selectedUser._id, updatedUser).then(status => {
+                $($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld).val('')
+                const index = users.findIndex(u => u._id == selectedUser._id)
+                users[index] = { _id: selectedUser._id, ...updatedUser }
+                console.log(users)
+                renderUsers(users)
+            })
+        }
     }
 
     /**
@@ -95,16 +124,11 @@
      */
     function renderUsers(users) {
         $tbody.empty()
-        console.log(users)
-        console.log(users.length)
-
         // render users
         for (let i = 0; i < users.length; i++) {
-            console.log(i)
             const user = users[i]
-            console.log(user)
             $tbody.prepend(`
-            <tr>
+            <tr data-id="${user._id}">
                 <td>${user.username}</td>
                 <td></td>
                 <td>${user.firstName}</td>
@@ -112,7 +136,7 @@
                 <td>${user.role}</td>
                 <td>
                     <div class="d-flex">
-                        <button id="${i}" data-username="${user._id}" class="btn btn-light wd-delete">
+                        <button id="${i}" data-id="${user._id}" class="btn btn-light wd-delete">
                             <i class="fa fa-close"></i>
                         </button>
                         <button id="${user._id}" class="btn btn-light wd-edit">
