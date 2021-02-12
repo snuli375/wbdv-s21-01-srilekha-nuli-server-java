@@ -98,22 +98,21 @@
      * response
      */
     function updateUser() {
-        if (selectedUser) {
-            const updatedUser = {
-                username: $usernameFld.val(),
-                password: $passwordFld.val(),
-                firstName: $firstNameFld.val(),
-                lastName: $lastNameFld.val(),
-                role: $roleFld.val()
-            }
-            userService.updateUser(selectedUser._id, updatedUser).then(status => {
-                $($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld).val('')
-                const index = users.findIndex(u => u._id == selectedUser._id)
-                users[index] = { _id: selectedUser._id, ...updatedUser }
-                console.log(users)
-                renderUsers(users)
-            })
+        const updatedUser = {
+            username: $usernameFld.val(),
+            password: $passwordFld.val(),
+            firstName: $firstNameFld.val(),
+            lastName: $lastNameFld.val(),
+            role: $roleFld.val(),
+            _id: selectedUser._id
         }
+        userService.updateUser(selectedUser._id, updatedUser).then(status => {
+            $($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld).val('')
+            const index = users.findIndex(u => u._id == selectedUser._id)
+            users[index] = {_id: selectedUser._id, ...updatedUser}
+            console.log(users)
+            renderUsers(users)
+        })
     }
 
     /**
