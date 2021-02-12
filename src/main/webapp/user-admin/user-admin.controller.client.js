@@ -5,12 +5,12 @@
  */
 
 (function () {
-    var $usernameFld, $passwordFld;
-    var $firstNameFld, $lastNameFld, $roleFld;
-    var $searchBtn, $createBtn, $updateBtn;
-    var $tbody;
-    var users, selectedUser;
-    var userService = new AdminUserServiceClient();
+    let $usernameFld, $passwordFld;
+    let $firstNameFld, $lastNameFld, $roleFld;
+    let $createBtn, $updateBtn;
+    let $tbody;
+    let users, selectedUser;
+    let userService = new AdminUserServiceClient();
     $(main);
 
     /**
