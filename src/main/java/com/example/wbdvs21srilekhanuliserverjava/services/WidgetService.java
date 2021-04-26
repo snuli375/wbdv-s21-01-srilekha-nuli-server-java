@@ -31,19 +31,18 @@ public class WidgetService {
   }
 
   public int updateWidget(Long wid, Widget widget) {
-    for (Widget w : widgets) {
-      if (w.getId().equals(wid)) {
-        w = widget;
+    for (int i = 0; i < widgets.size(); i++) {
+      if (widgets.get(i).getId().equals(wid)) {
+        widgets.set(i, widget);
       }
     }
     return -1;
   }
 
   public int deleteWidget(Long wid) {
-    List<Widget> filtered = new ArrayList<>();
     for (Widget w : widgets) {
-      if (w.getTopicId().equals(wid)) {
-        filtered.remove(w);
+      if (w.getId().equals(wid)) {
+        widgets.remove(w);
       }
     }
     return -1;
