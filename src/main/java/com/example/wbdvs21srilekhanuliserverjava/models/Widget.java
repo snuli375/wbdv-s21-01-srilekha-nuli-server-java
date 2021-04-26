@@ -15,6 +15,17 @@ public class Widget {
   private String style;
   private String value;
   private String topicId;
+  private boolean ordered;
+
+
+  public boolean getIsOrdered() {
+    return ordered;
+  }
+
+  public void setOrdered(boolean ordered) {
+    this.ordered = ordered;
+  }
+
 
   public String getTopicId() {
     return topicId;
