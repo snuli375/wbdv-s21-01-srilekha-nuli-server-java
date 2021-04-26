@@ -1,10 +1,15 @@
 package com.example.wbdvs21srilekhanuliserverjava.models;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name="widgets")
 public class Widget {
 
-  private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  private String name;
   private String type;
   private int widgetOrder;
   private String text;
